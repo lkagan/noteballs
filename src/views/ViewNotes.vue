@@ -10,23 +10,21 @@
             ></textarea>
         </div>
       </div>
-
       <div class="field is-grouped is-grouped-right">
         <div class="control">
-          <button class="button is-link has-background-info">Add New Note</button>
+          <button class="button is-link has-background-info">Add New Note
+          </button>
         </div>
       </div>
     </div>
     <div
         class="card mb-4"
-        v-for="i of 3"
+        v-for="note in notes"
+        key="note.id"
     >
       <div class="card-content">
         <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum,
-          laudantium, ut. Enim esse itaque labore quae quo sint soluta vero!
-          Consequatur deserunt facere inventore maxime minima, quas tempora
-          tenetur vitae.
+          {{ note.content }}
         </div>
       </div>
       <footer class="card-footer">
@@ -42,3 +40,21 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref } from "vue";
+
+const notes = ref([
+  {
+    id: 'id1',
+    content: ` Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
+    asperiores blanditiis dignissimos eius eligendi eos error esse est
+    inventore iste, maxime neque odio quae saepe suscipit veritatis vero.
+    Nihil, vel?`
+  },
+  {
+    id: 'id2',
+    content: 'This is a shorter note.'
+  }
+]);
+</script>
