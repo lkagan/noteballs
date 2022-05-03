@@ -7,12 +7,18 @@
             <textarea
                 class="textarea"
                 placeholder="Add a new note"
+                v-model="newNote"
+                ref="newNoteRef"
             ></textarea>
         </div>
       </div>
       <div class="field is-grouped is-grouped-right">
         <div class="control">
-          <button class="button is-link has-background-info">Add New Note
+          <button
+              class="button is-link has-background-info"
+              @click="addNotes"
+              :disabled="!newNote"
+          >Add New Note
           </button>
         </div>
       </div>
@@ -44,6 +50,8 @@
 <script setup>
 import { ref } from "vue";
 
+const newNoteRef = ref(null);
+const newNote = ref('');
 const notes = ref([
   {
     id: 'id1',
@@ -57,4 +65,14 @@ const notes = ref([
     content: 'This is a shorter note.'
   }
 ]);
+
+const addNotes = () => {
+  notes.value.unshift({
+    id: Math.random().toString(),
+    content: newNote.value
+  })
+
+  newNote.value = '';
+  newNoteRef.value.focus();
+}
 </script>
