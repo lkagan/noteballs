@@ -1,11 +1,18 @@
 <template>
-  <div class="card has-background-info-dark p-4 mb-5">
-    <div class="field">
+  <div
+      class="card p-4 mb-5"
+      :class="`has-background-${bgColor}-dark`"
+  >
+    <label
+        class="label has-text-white"
+        v-if="label"
+    >{{ label }}</label>
+  <div class="field">
       <div class="control">
         <textarea
             v-model="modelValue"
             class="textarea"
-            placeholder="Add a new note"
+            :placeholder="placeholder"
             ref="textAreaRef"
             @input="$emit('update:modelValue', $event.target.value)"
         ></textarea>
@@ -24,6 +31,18 @@ import { ref } from "vue";
 
 defineProps({
   modelValue: {
+    type: String,
+    required: true,
+  },
+  bgColor: {
+    type: String,
+    default: 'info'
+  },
+  placeholder: {
+    type: String,
+    default: '',
+  },
+  label: {
     type: String
   }
 });
