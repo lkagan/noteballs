@@ -3,6 +3,7 @@
     <AddEditNote
         ref="addEditNoteRef"
         v-model="newNote"
+        maxlength="100"
         placeholder="Add a new note"
     >
     <template #buttons>
@@ -23,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import Note from "@/components/Notes/Note.vue";
 import { useStoreNotes } from "@/stores/storeNotes";
 import AddEditNote from "@/components/Notes/AddEditNote.vue";
@@ -37,4 +38,12 @@ const addNotes = () => {
   newNote.value = '';
   addEditNoteRef.value.focusTextArea();
 }
+
+// Update character count as user types.
+watch(newNote, (newValue) => {
+  if (newValue.length >= 100) {
+    alert('You have reached the maximum number of characters.');
+  }
+})
+
 </script>
