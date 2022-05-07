@@ -42,6 +42,14 @@ export const useStoreNotes = defineStore('storeNotes', {
     getters: {
         getNoteContent: (state) => {
             return (id) => state.notes.find(note => note.id === id).content;
+        },
+
+        noteCount: (state) => {
+            return state.notes.length;
+        },
+
+        totalCharCount: (state) => {
+            return state.notes.reduce((total, note) => total + note.content.length, 0);
         }
     }
 })
