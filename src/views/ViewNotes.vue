@@ -24,10 +24,11 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import Note from "@/components/Notes/Note.vue";
 import { useStoreNotes } from "@/stores/storeNotes";
 import AddEditNote from "@/components/Notes/AddEditNote.vue";
+import { useWatchCharacters } from "@/use/useWatchCharacters.js";
 
 const newNote = ref('');
 const addEditNoteRef = ref(null);
@@ -39,11 +40,5 @@ const addNotes = () => {
   addEditNoteRef.value.focusTextArea();
 }
 
-// Update character count as user types.
-watch(newNote, (newValue) => {
-  if (newValue.length >= 100) {
-    alert('You have reached the maximum number of characters.');
-  }
-})
-
+useWatchCharacters(newNote);
 </script>

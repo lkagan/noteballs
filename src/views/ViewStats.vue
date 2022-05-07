@@ -23,13 +23,18 @@
         type="text"
         placeholder="Do you love noteballs?"
         v-autofocus
+        v-model="feedback"
     >
   </div>
 </template>
 
 <script setup>
-import { useStoreNotes} from "@/stores/storeNotes";
-import { vAutofocus} from "@/directives/vAutofocus";
+import { useStoreNotes } from "@/stores/storeNotes";
+import { vAutofocus } from "@/directives/vAutofocus";
+import { useWatchCharacters } from "@/use/useWatchCharacters";
+import { ref } from "vue";
 
 const store = useStoreNotes();
+const feedback = ref(null);
+useWatchCharacters(feedback);
 </script>
