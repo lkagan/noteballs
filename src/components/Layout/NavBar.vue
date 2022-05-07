@@ -29,7 +29,7 @@
           class="navbar-menu"
           :class="{ 'is-active': showMobileNav }"
       >
-        <div class="navbar-end">
+        <div class="navbar-end" @click="showMobileNav = false">
           <RouterLink
               to="/"
               class="navbar-item"

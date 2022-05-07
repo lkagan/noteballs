@@ -31,11 +31,17 @@ import { ref } from "vue";
 import { useStoreNotes} from "@/stores/storeNotes";
 import { useRoute, useRouter } from "vue-router";
 
+/*
+ * Variables
+ */
 const store = useStoreNotes();
 const route = useRoute();
 const router = useRouter();
 const content = ref(store.getNoteContent(route.params.id));
 
+/*
+ * Methods
+ */
 const save = () => {
   store.update(route.params.id, content.value);
   router.back();
