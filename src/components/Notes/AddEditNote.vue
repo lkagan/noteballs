@@ -15,6 +15,7 @@
             :placeholder="placeholder"
             ref="textAreaRef"
             @input="$emit('update:modelValue', $event.target.value)"
+            v-autofocus
         ></textarea>
       </div>
     </div>
@@ -53,6 +54,12 @@ const textAreaRef = ref(null);
 
 const focusTextArea = () => {
   textAreaRef.value.focus();
+}
+
+const vAutofocus = {
+  mounted: (el) => {
+    el.focus();
+  }
 }
 
 defineExpose({ focusTextArea });
