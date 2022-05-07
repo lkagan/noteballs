@@ -15,7 +15,8 @@
       <button
             class="button is-link has-background-success"
             :disabled="!content"
-        >Add New Note
+            @click="save"
+        >Save
         </button>
       </template>
     </AddEditNote>
@@ -28,9 +29,15 @@
 import AddEditNote from "@/components/Notes/AddEditNote.vue";
 import { ref } from "vue";
 import { useStoreNotes} from "@/stores/storeNotes";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const store = useStoreNotes();
-const content = ref(store.getNoteContent(useRoute().params.id));
+const route = useRoute();
+const router = useRouter();
+const content = ref(store.getNoteContent(route.params.id));
 
+const save = () => {
+  store.update(route.params.id, content.value);
+  router.back();
+}
 </script>
