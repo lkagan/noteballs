@@ -29,6 +29,7 @@
 
 <script setup>
 import { ref } from "vue";
+import {vAutofocus} from "@/directives/vAutofocus";
 
 defineProps({
   modelValue: {
@@ -54,12 +55,6 @@ const textAreaRef = ref(null);
 
 const focusTextArea = () => {
   textAreaRef.value.focus();
-}
-
-const vAutofocus = {
-  mounted: (el) => {
-    el.focus();
-  }
 }
 
 defineExpose({ focusTextArea });
