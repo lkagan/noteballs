@@ -36,5 +36,5 @@ import { ref } from "vue";
 
 const store = useStoreNotes();
 const feedback = ref(null);
-useWatchCharacters(feedback);
+useWatchCharacters(feedback, 50);
 </script>
